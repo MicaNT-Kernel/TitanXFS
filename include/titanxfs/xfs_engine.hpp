@@ -469,7 +469,7 @@ public:
         return true;
     }
 
-    static bool FormatVolume(const std::string& path, uint64_t sizeBytes, const std::string& label = "TitanXFS") {
+    static bool FormatVolume(const std::string& path, uint64_t sizeBytes, const std::string& label = "XFS Volume") {
         constexpr uint32_t BLK_SIZE = 4096;
         constexpr uint32_t SECT_SIZE = 512;
         constexpr uint16_t INO_SIZE = 512; // Standard XFS v5 inode size
@@ -662,7 +662,7 @@ private:
         while (len < 12 && labelBuf[len] != '\0') ++len;
         while (len > 0 && (labelBuf[len - 1] == ' ' || labelBuf[len - 1] == '\0')) --len;
         label_ = std::string(labelBuf, len);
-        if (label_.empty()) label_ = "TitanXFS";
+        if (label_.empty()) label_ = "XFS Volume";
 
         isOpen_ = true;
         return true;
